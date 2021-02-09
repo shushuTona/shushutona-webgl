@@ -1,8 +1,3 @@
-import * as THREE from 'three';
+import { Chap1 } from './chap1';
 
-console.log( THREE );
-
-// create canvas
-const canvas = document.createElement( 'canvas' );
-canvas.id = 'canvas';
-document.body.appendChild( canvas );
+new Chap1();
