@@ -1,4 +1,5 @@
 const path = require( "path" );
+const TerserPlugin = require( "terser-webpack-plugin" );
 
 module.exports = {
     mode: 'development',
@@ -24,5 +25,27 @@ module.exports = {
         contentBase: path.join( __dirname, 'docs' ),
         watchContentBase: true,
         port: 3000,
+    },
+    optimization: {
+        minimize: true,
+        minimizer: [
+            new TerserPlugin( {
+                terserOptions: {
+                    ecma: undefined,
+                    parse: {},
+                    compress: {},
+                    mangle: true,
+                    module: false,
+                    output: null,
+                    format: null,
+                    toplevel: false,
+                    nameCache: null,
+                    ie8: false,
+                    keep_classnames: undefined,
+                    keep_fnames: false,
+                    safari10: false,
+                },
+            } ),
+        ],
     }
 };
