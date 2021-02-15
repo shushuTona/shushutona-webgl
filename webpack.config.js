@@ -5,7 +5,7 @@ module.exports = {
     mode: 'development',
     entry: './src/index.ts',
     output: {
-        path: path.join( __dirname, 'docs' ),
+        path: path.join( __dirname, 'docs/src/js' ),
         filename: 'main.js'
     },
     module: {
@@ -46,6 +46,6 @@ module.exports = {
                     safari10: false,
                 },
             } ),
-        ],
+        ]
     }
 };
