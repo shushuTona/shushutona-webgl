@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { SceneUtils } from 'three/examples/jsm/utils/SceneUtils';
 import { ConvexGeometry } from 'three/examples/jsm/geometries/ConvexGeometry';
+import { ParametricGeometries } from 'three/examples/jsm/geometries/ParametricGeometries';
 
 class Chap6 {
     private scene: THREE.Scene;
@@ -15,7 +16,9 @@ class Chap6 {
         // this.createConvex();
         // this.createLathe();
         // this.cretaExtrude();
-        this.createTube();
+        // this.createTube();
+        this.createParametric();
+        // this.createText();
 
         this.renderer.render( this.scene, this.camera );
     }
@@ -196,6 +199,32 @@ class Chap6 {
 
         const tubeMesh = this.createMesh( tubeGeometry );
         this.scene.add( tubeMesh );
+    }
+
+    createParametric() {
+        const parametricMesh = this.createMesh( new THREE.ParametricGeometry( ParametricGeometries.klein, 25, 25 ) );
+
+        this.scene.add( parametricMesh );
+    }
+
+    createText() {
+        const fontLoader = new THREE.FontLoader();
+
+        fontLoader.load( 'helvetiker_regular.typeface.json', ( helvetiker ) => {
+            const options: THREE.TextGeometryParameters = {
+                size: 90,
+                height: 90,
+                font: helvetiker,
+                bevelThickness: 9,
+                bevelSize: 4,
+                bevelEnabled: true,
+                curveSegments: 12
+            };
+
+            const textMesh = this.createMesh( new THREE.TextGeometry( 'shushuTona', options ) );
+
+            this.scene.add( textMesh );
+        } );
     }
 }
 
